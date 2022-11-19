@@ -191,3 +191,48 @@ ON a.id = w.account_id
 GROUP BY a.id, a.name, w.channel
 ORDER BY num_channels_used DESC
 LIMIT 10;
+
+/* Find the sales in terms of total dollars for all orders in each year, ordered from greatest to least. */
+SELECT DATE_PART('year', occurred_at) ord_year,  SUM(total_amt_usd) total_spent
+FROM orders
+GROUP BY ord_year
+ORDER BY total_spent;
+
+/* Which month did Parch & Posey have the greatest sales in terms of total dollars? 
+Are all months evenly represented by the dataset? */
+SELECT DATE_PART('month', occurred_at) ord_month,
+SUM(total_amt_usd) total_spent
+FROM orders
+WHERE occurred_at BETWEEN '2014-01-01' AND '2017-01-01'
+GROUP BY ord_month
+ORDER BY total_spent DESC
+LIMIT 1;
+
+/* Which year did Parch & Posey have the greatest sales in terms of total number of orders? 
+Are all years evenly represented by the dataset? */
+SELECT DATE_PART('year', occurred_at) ord_year,
+COUNT(*) total_qty
+FROM orders
+GROUP BY ord_year
+ORDER BY total_qty DESC;
+
+/* Which month did Parch & Posey have the greatest sales in terms of total number of orders?
+ Are all months evenly represented by the dataset? */
+SELECT DATE_PART('month', occurred_at) ord_month,
+COUNT(*) total_qty
+FROM orders
+GROUP BY ord_month
+ORDER BY total_qty DESC;
+
+/* In which month of which year did Walmart spend the most on gloss paper in terms of dollars? */
+SELECT DATE_TRUNC('month', o.occurred_at) ord_month,
+SUM(o.gloss_amt_usd) total_spent
+FROM orders o
+JOIN accounts a
+ON a.id = o.account_id
+WHERE a.name = 'Walmart'
+GROUP BY ord_month
+ORDER BY total_spent DESC
+LIMIT 1;
+
+
