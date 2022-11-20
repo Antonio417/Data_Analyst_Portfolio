@@ -1,7 +1,7 @@
 # 🗺 Data Analytics Portfolio
 ### Welcome to my Data Analytics Portfolio 🙌🏽
-### Here I provide a brief explanation to all of my data analytics projects.
-### Feel free to click on the project's name to take a look at each project in more detail ! 
+### Here I provide a brief explanation to all of my data analytics projects
+### Feel free to click on the project's name to take a look at each project in more detail 
 ## 📚 Table of Contents
 - [Python](#python)
 <!--- - [SQL](#sql) --- >
