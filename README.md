@@ -9,7 +9,7 @@
 <!--- - [Tableau](#tableau) --->
 
 # Python 
-#### Skills: Data Cleaning, Visualization, Wrangling, Exploratory Data Analysis, Machine Learning
+#### Skills: Data Cleaning, Wrangling, Visualization, Exploratory Data Analysis, Machine Learning
 #### Libraries: Pandas, Seaborn, Sklearn, Numpy, Matplotlib
 | Project Name | Area | Description | Libraries |    
 |---|---|---|---|
