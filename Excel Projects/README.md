@@ -16,6 +16,6 @@
 ![Coca-Cola Dashboard](CocaColaDashboardPage1.png)
 
 # Home Luxury Kitchen Dashboard
-### Home Luxury Kitchen is a company that sells kitchen equipment and we are asked to make a dashboard that summarise sales for 2022 only. Analysing data from scratch was done to answer questions on sales and visualize results for ease of explanations. Dashboard provided could show sale performance for each product and trends on customer preferences in each selected state or year.
+### Description: Home Luxury Kitchen is a company that sells kitchen equipment and we are asked to make a dashboard that summarise sales for 2022 only. Analysing data from scratch was done to answer questions on sales and visualize results for ease of explanations. Dashboard provided could show sale performance for each product and trends on customer preferences in each selected state or year.
 ### Functions and Tools: Pivot Table, Charts, Maps, Slicers, Data Validation, IF, SUMIFS, TRANSPOSE, LARGE and INDEX
 ![Home Luxury Kitchen Dashboard](HomeLuxuryKitchenDashboardPage1.png)
