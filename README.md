@@ -3,10 +3,17 @@
 ### Here I provide a brief explanation to all of my data analytics projects
 ### Feel free to click on the project's name to take a look at each project in more detail 
 ## 📚 Table of Contents
-- [Python](#python)
 - [Excel](#excel)
+- [Python](#python)
 <!--- - [SQL](#sql) --- >
 <!--- - [Tableau](#tableau) --->
+
+# Excel
+| Project Name | Area | Description | Tools and Functions |   
+|---|---|---|---|
+| [Home Luxury Kitchen Dashboard](https://github.com/Antonio417/Data_Analyst_Portfolio/tree/main/Excel%20Projects) | Data Analysis, Dashboard Design and Development | Analysing data from scratch to answer questions on sales and visualize results for ease of explanations. Dashboard provided could show sale performance for each product and trends on customer preferences in each selected state or year. Shown below is the dashboard created ![img1](https://github.com/Antonio417/Data_Analyst_Portfolio/blob/main/Excel%20Projects/HomeLuxuryKitchenDashboardPage1.png) | Pivot Table, Charts, Maps, Slicers, Data Validation, IF, SUMIFS, TRANSPOSE, LARGE and INDEX |
+| [Adidas Dashboard](https://github.com/Antonio417/Data_Analyst_Portfolio/tree/main/Excel%20Projects) | Dashboard Design and Development | This project main aim was to provide a dashboard that could help the management team to understand better how sales was distributed across states, how each retailers contribute to their sales and how the sales were done (online, outlet or in-store) and it provide informations on the trend of sales each year for each respective products. Shown below is the dashboard created ![img2](https://github.com/Antonio417/Data_Analyst_Portfolio/blob/main/Excel%20Projects/AdidasDashboardPage1.png) | Pivot Table, Charts, Maps and Slicers |
+| [Coca-Cola Dashboard](https://github.com/Antonio417/Data_Analyst_Portfolio/tree/main/Excel%20Projects) | Dashboard Design and Development | Dashboard provided could be use to show shareholders on the performance of their company. This dashboard also provide information on sales of each products and trends within respective months selected. Shown below is the dashboard created ![img3](https://github.com/Antonio417/Data_Analyst_Portfolio/blob/main/Excel%20Projects/CocaColaDashboardPage1.png)| Pivot Table, Charts, Maps and Slicers |
 
 # Python 
 #### Skills: Data Cleaning, Wrangling, Visualization, Exploratory Data Analysis, Machine Learning
@@ -18,12 +25,7 @@
 |🛍️ [Store Analysis](https://github.com/Antonio417/Data_Analyst_Portfolio/tree/main/Python/Store-Analysis)| Exploratory Data Analysis and Data Visualization |Super Store is a small retail business located in the United States. They sell Furniture, Office Supplies and Technology products and their customers are the mass Consumer, Corporate and Home Offices. This project was done to determine weak areas and opportunities for Super Store to boost business growth.| Pandas,MatPlotlib and Seaborn |
 | 📊 [Diamond Multivariate Analysis](https://github.com/Antonio417/Data_Analyst_Portfolio/tree/main/Python/Multivariate_Data_Analysis) | Exploratory Data Analysis and Data Visualization | The aim of this project was to find how each feature of a diamond affects the price and which feature was the most important one. Finding the right way to best visualize univariate, bivariate and multivariate relationship within them was also investigated.| Numpy, Pandas, Seaborn, Math and Matplotlib|
 
-# Excel
-| Project Name | Area | Description | Tools and Functions |   
-|---|---|---|---|
-| [Home Luxury Kitchen Dashboard](https://github.com/Antonio417/Data_Analyst_Portfolio/tree/main/Excel%20Projects) | Data Analysis, Dashboard Design and Development | Analysing data from scratch to answer questions on sales and visualize results for ease of explanations. Dashboard provided could show sale performance for each product and trends on customer preferences in each selected state or year. Shown below is the dashboard created ![img1](https://github.com/Antonio417/Data_Analyst_Portfolio/blob/main/Excel%20Projects/HomeLuxuryKitchenDashboardPage1.png) | Pivot Table, Charts, Maps, Slicers, Data Validation, IF, SUMIFS, TRANSPOSE, LARGE and INDEX |
-| [Adidas Dashboard](https://github.com/Antonio417/Data_Analyst_Portfolio/tree/main/Excel%20Projects) | Dashboard Design and Development | This project main aim was to provide a dashboard that could help the management team to understand better how sales was distributed across states, how each retailers contribute to their sales and how the sales were done (online, outlet or in-store) and it provide informations on the trend of sales each year for each respective products. Shown below is the dashboard created ![img2](https://github.com/Antonio417/Data_Analyst_Portfolio/blob/main/Excel%20Projects/AdidasDashboardPage1.png) | Pivot Table, Charts, Maps and Slicers |
-| [Coca-Cola Dashboard](https://github.com/Antonio417/Data_Analyst_Portfolio/tree/main/Excel%20Projects) | Dashboard Design and Development | Dashboard provided could be use to show shareholders on the performance of their company. This dashboard also provide information on sales of each products and trends within respective months selected. Shown below is the dashboard created ![img3](https://github.com/Antonio417/Data_Analyst_Portfolio/blob/main/Excel%20Projects/CocaColaDashboardPage1.png)| Pivot Table, Charts, Maps and Slicers |
+
 
 
 <!--- # SQL --->
