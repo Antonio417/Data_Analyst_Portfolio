@@ -2,7 +2,7 @@
 This folder contains solution to 8 case studies from the **[#8WeekSQLChallenge](https://8weeksqlchallenge.com)**!
 
 ## 📚 Table of Contents
-- [Case Study #1: Danny's Diner](#case-study-1-dannys-diner)
+- [Case Study #1: Danny's Diner](https://github.com/Antonio417/Data_Analyst_Portfolio/tree/main/SQL/Danny's-Diner)
 - [Case Study #2: Pizza Runner](#case-study-2-pizza-runner)
 - [Case Study #3: Foodie-Fi](#case-study-3-foodie-fi)
 - [Case Study #4: Data Bank](#case-study-4-data-bank)
