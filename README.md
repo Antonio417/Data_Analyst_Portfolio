@@ -11,7 +11,7 @@
 # SQL
 | Project Name | Description | Functions |   
 |---|---|---|
-| 🍜[Danny's Diner](https://github.com/Antonio417/Data_Analyst_Portfolio/tree/main/SQL/Danny's-Diner) | Use data to answer a few simple questions about customers, especially about their visiting patterns, how much money they’ve spent and also which menu items are their favourite. Having this deeper connection with customers will help him deliver a better and more personalised experience for his loyal customers. These insights will be used to help him decide whether the expantion of existing customer loyalty program is needed.
+| 🍜[Danny's Diner](https://github.com/Antonio417/Data_Analyst_Portfolio/tree/main/SQL/Danny's-Diner) | Use data to answer a few simple question about customers, especially about their visiting patterns, how much money they’ve spent and also which menu items are their favourite. Having this deeper connection with customers will help the owner to deliver a better and more personalised experience for their loyal customers. These insights will be used to help decide whether the expansion of existing customer loyalty program is needed.
 
 # Excel
 | Project Name | Area | Description | Tools and Functions |   
