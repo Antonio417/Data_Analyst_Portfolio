@@ -1,5 +1,6 @@
 # 🗺 Data Analytics Portfolio
-![coverImage]()
+<img src = "https://github.com/Antonio417/Data_Analyst_Portfolio/blob/main/coverImage.jpeg" width=950 height=700>
+
 ### Welcome to my Data Analytics Portfolio 🙌🏽
 ### Here I provide a brief explanation to all of my data analytics projects
 ### Feel free to click on the project's name to take a look at each project in more detail 
