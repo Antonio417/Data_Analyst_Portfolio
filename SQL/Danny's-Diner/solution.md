@@ -35,14 +35,14 @@ ORDER BY s.customer_id
 ### 2. How many days has each customer visited the restaurant ?
 
 ````sql
-SELECT s.customer_id, COUNT(DISTINCT(order_date))
+SELECT s.customer_id, COUNT(DISTINCT(order_date)) visit_count
 FROM dannys_diner.sales s
 GROUP BY s.customer_id;
 ````
 
 #### Steps:
-- Use **DISTINCT** and wrap with **COUNT** to find out the ```visit_count``` for each customer.
-- If we do not use **DISTINCT** on ```order_date```, the number of days may be repeated. For example, if Customer A visited the restaurant twice on '2021–01–07', then number of days is counted as 2 days instead of 1 day.
+- Use **DISTINCT** and wrap with **COUNT** to find out ```visit_count``` for each customer.
+- If we do not use **DISTINCT** on ```order_date```, the number of days may be repeated and duplicates will exist.
 
 
 #### Answer:
