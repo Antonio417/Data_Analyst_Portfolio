@@ -14,7 +14,7 @@ Use data to answer a few simple question about customers, especially about their
 <img src = "https://github.com/Antonio417/Data_Analyst_Portfolio/blob/main/SQL/Danny's-Diner/ERD.png" width="800" height="400" />
 
 
-## Case Study Questions (Click Here for solution)
+## Case Study Questions (Click [Here](https://github.com/Antonio417/Data_Analyst_Portfolio/blob/main/SQL/Danny's-Diner/solution.md) for solution)
 1. What is the total amount each customer spent at the restaurant?
 2. How many days has each customer visited the restaurant?
 3. What was the first item from the menu purchased by each customer?
