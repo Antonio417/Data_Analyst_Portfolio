@@ -46,14 +46,14 @@ GROUP BY s.customer_id;
 
 
 #### Answer:
-| customer_id | total_sales |
+| customer_id | visit_count |
 | ----------- | ----------- |
-| A           | 76          |
-| B           | 74          |
-| C           | 36          |
+| A           | 4          |
+| B           | 6          |
+| C           | 2          |
 
-- Customer A spent $76.
-- Customer B spent $74.
-- Customer C spent $36.
+- Customer A visited 4 times.
+- Customer B visited 6 times.
+- Customer C visited 2 times.
 
 ***
