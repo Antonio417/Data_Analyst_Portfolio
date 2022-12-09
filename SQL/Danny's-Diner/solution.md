@@ -3,7 +3,7 @@
 
 ***
 
-### 1. What is the total amount each customer spent at the restaurant?
+### 1. What is the total amount each customer spent at the restaurant ?
 
 ````sql
 SELECT s.customer_id, SUM(price) AS total_spent
@@ -32,3 +32,28 @@ ORDER BY s.customer_id
 
 ***
 
+### 2. How many days has each customer visited the restaurant ?
+
+````sql
+SELECT s.customer_id, COUNT(DISTINCT(order_date))
+FROM dannys_diner.sales s
+GROUP BY s.customer_id;
+````
+
+#### Steps:
+- Use **DISTINCT** and wrap with **COUNT** to find out the ```visit_count``` for each customer.
+- If we do not use **DISTINCT** on ```order_date```, the number of days may be repeated. For example, if Customer A visited the restaurant twice on '2021–01–07', then number of days is counted as 2 days instead of 1 day.
+
+
+#### Answer:
+| customer_id | total_sales |
+| ----------- | ----------- |
+| A           | 76          |
+| B           | 74          |
+| C           | 36          |
+
+- Customer A spent $76.
+- Customer B spent $74.
+- Customer C spent $36.
+
+***
