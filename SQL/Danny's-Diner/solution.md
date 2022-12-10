@@ -67,11 +67,6 @@ WHERE rank = 1
 GROUP BY customer_id, product_name;
 ````
 
-#### Steps:
-- Create a temp table ```order_sales_cte``` and use **Windows function** with **DENSE_RANK** to create a new column ```rank``` based on ```order_date```.
-- Instead of **ROW_NUMBER** or **RANK**, use **DENSE_RANK** as ```order_date``` is not time-stamped hence, there is no sequence as to which item is ordered first if 2 or more items are ordered on the same day.
-- Subsequently, **GROUP BY** all columns to show ```rank = 1``` only.
-
 #### Answer:
 | customer_id | product_name | 
 | ----------- | ----------- |
