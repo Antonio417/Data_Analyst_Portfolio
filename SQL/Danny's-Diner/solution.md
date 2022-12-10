@@ -14,11 +14,6 @@ GROUP BY s.customer_id
 ORDER BY s.customer_id
 ````
 
-#### Steps:
-- Use **SUM** and **GROUP BY** to find ```total_spent``` for each customer.
-- Use **JOIN** to merge ```sales``` and ```menu``` tables as ```customer_id``` and ```price``` are from both tables.
-
-
 #### Answer:
 | customer_id | total_sales |
 | ----------- | ----------- |
@@ -40,11 +35,6 @@ FROM dannys_diner.sales s
 GROUP BY s.customer_id;
 ````
 
-#### Steps:
-- Use **DISTINCT** and wrap with **COUNT** to find out ```visit_count``` for each customer.
-- If we do not use **DISTINCT** on ```order_date```, the number of days may be repeated and duplicates will exist.
-
-
 #### Answer:
 | customer_id | visit_count |
 | ----------- | ----------- |
@@ -55,5 +45,43 @@ GROUP BY s.customer_id;
 - Customer A visited 4 times.
 - Customer B visited 6 times.
 - Customer C visited 2 times.
+
+***
+
+### 3. What was the first item from the menu purchased by each customer?
+
+````sql
+WITH ordered_sales AS
+(
+   SELECT customer_id, order_date, product_name,
+      DENSE_RANK() OVER(PARTITION BY s.customer_id
+      ORDER BY s.order_date) AS rank
+   FROM dannys_diner.sales AS s
+   JOIN dannys_diner.menu AS m
+      ON s.product_id = m.product_id
+)
+
+SELECT customer_id, product_name
+FROM ordered_sales
+WHERE rank = 1
+GROUP BY customer_id, product_name;
+````
+
+#### Steps:
+- Create a temp table ```order_sales_cte``` and use **Windows function** with **DENSE_RANK** to create a new column ```rank``` based on ```order_date```.
+- Instead of **ROW_NUMBER** or **RANK**, use **DENSE_RANK** as ```order_date``` is not time-stamped hence, there is no sequence as to which item is ordered first if 2 or more items are ordered on the same day.
+- Subsequently, **GROUP BY** all columns to show ```rank = 1``` only.
+
+#### Answer:
+| customer_id | product_name | 
+| ----------- | ----------- |
+| A           | curry        | 
+| A           | sushi        | 
+| B           | curry        | 
+| C           | ramen        |
+
+- Customer A's first orders are curry and sushi.
+- Customer B's first order is curry.
+- Customer C's first order is ramen.
 
 ***
