@@ -11,7 +11,7 @@ FROM dannys_diner.sales s
 JOIN dannys_diner.menu m
 ON m.product_id = s.product_id
 GROUP BY s.customer_id
-ORDER BY s.customer_id
+ORDER BY s.customer_id;
 ````
 
 #### Answer:
@@ -90,7 +90,7 @@ JOIN dannys_diner.menu AS m
 ON s.product_id = m.product_id
 GROUP BY m.product_name 
 ORDER BY number_of_sales DESC
-LIMIT 1
+LIMIT 1;
 ````
 
 #### Answer:
@@ -213,3 +213,37 @@ GROUP BY s.customer_id;
 
 - Customer A spent $25 on 2 items.
 - Customer B spent $40 on 2 items.
+
+### 9. If each $1 spent equates to 10 points and sushi has a 2x points multiplier — how many points would each customer have?
+
+````sql
+WITH points AS
+(
+   SELECT *, 
+      CASE
+         WHEN product_name = 'sushi' THEN price * 20
+         ELSE price * 10
+      END AS points
+   FROM dannys_diner.menu
+)
+
+SELECT s.customer_id, SUM(p.points) AS total_points
+FROM points p
+JOIN dannys_diner.sales AS s
+   ON p.product_id = s.product_id
+GROUP BY s.customer_id
+ORDER BY customer_id;
+````
+
+#### Answer:
+| customer_id | total_points | 
+| ----------- | ---------- |
+| A           | 860 |
+| B           | 940 |
+| C           | 360 |
+
+- Total points for Customer A is 860.
+- Total points for Customer B is 940.
+- Total points for Customer C is 360.
+
+***
