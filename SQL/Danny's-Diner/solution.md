@@ -195,7 +195,7 @@ WITH new_member AS
 ### 8. What is the total items and amount spent for each member before they became a member?
 
 ````sql
-SELECT s.customer_id, COUNT(DISTINCT s.product_id), SUM(m.price)
+SELECT s.customer_id, COUNT(DISTINCT s.product_id) item_count, SUM(m.price)
 FROM dannys_diner.sales s
 JOIN dannys_diner.menu m
 ON s.product_id = m.product_id
@@ -206,7 +206,7 @@ GROUP BY s.customer_id;
 ````
 
 #### Answer:
-| customer_id | unique_menu_item | total_sales |
+| customer_id | item_count | total_sales |
 | ----------- | ---------- |----------  |
 | A           | 2 |  25       |
 | B           | 2 |  40       |
