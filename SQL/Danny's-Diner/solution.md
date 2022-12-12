@@ -124,3 +124,33 @@ WHERE rank = 1;
 | B           | curry        |  2   |
 | B           | ramen        |  2   |
 | C           | ramen        |  3   |
+
+### 6. Which item was purchased first by the customer after they became a member?
+
+````sql
+WITH new_member AS
+(
+  SELECT s.customer_id, m.join_date, s.order_date, s.product_id,
+  	 DENSE_RANK() OVER(PARTITION BY s.customer_id 
+                       ORDER BY s.order_date) AS rank
+  	 FROM dannys_diner.sales s
+  	 JOIN dannys_diner.members m
+  	 	ON s.customer_id = m.customer_id
+  	 WHERE s.order_date >= m.join_date
+)
+     
+ SELECT new_member.customer_id, new_member.order_date, menu.product_name
+ FROM new_member
+ JOIN dannys_diner.menu AS menu
+ ON new_member.product_id = menu.product_id
+ WHERE rank = 1
+ ORDER BY new_member.customer_id;
+````
+#### Answer:
+| customer_id | order_date  | product_name |
+| ----------- | ---------- |----------  |
+| A           | 2021-01-07 | curry        |
+| B           | 2021-01-11 | sushi        |
+
+- Customer A's first order as a member is curry.
+- Customer B's first order as a member is sushi.
