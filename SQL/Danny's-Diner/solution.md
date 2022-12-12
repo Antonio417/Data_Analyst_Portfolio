@@ -192,3 +192,24 @@ WITH new_member AS
 - Customer A’s last order before becoming a member is sushi and curry.
 - Whereas for Customer B, it's sushi. That must have been a real good sushi!
 
+### 8. What is the total items and amount spent for each member before they became a member?
+
+````sql
+SELECT s.customer_id, COUNT(DISTINCT s.product_id), SUM(m.price)
+FROM dannys_diner.sales s
+JOIN dannys_diner.menu m
+ON s.product_id = m.product_id
+JOIN dannys_diner.members as members
+ON s.customer_id = members.customer_id
+WHERE s.order_date < members.join_date
+GROUP BY s.customer_id;
+````
+
+#### Answer:
+| customer_id | unique_menu_item | total_sales |
+| ----------- | ---------- |----------  |
+| A           | 2 |  25       |
+| B           | 2 |  40       |
+
+- Customer A spent $25 on 2 items.
+- Customer B spent $40 on 2 items.
