@@ -9,11 +9,13 @@
 - [Excel](#excel)
 - [Python](#python)
 <!--- - [Tableau](#tableau) --->
-
+Danny requires further assistance to clean his data and apply some basic calculations so he can better direct his runners and optimise Pizza Runner’s operations.
 # SQL
-| Project Name | Description | Functions |   
-|---|---|---|
-| 🍜[Danny's Diner](https://github.com/Antonio417/Data_Analyst_Portfolio/tree/main/SQL/Danny's-Diner) | Use data to answer a few simple question about customers, especially about their visiting patterns, how much money they’ve spent and also which menu items are their favourite. Having this deeper connection with customers will help the owner to deliver a better and more personalised experience for their loyal customers. These insights will be used to help decide whether the expansion of existing customer loyalty program is needed.
+| Project Name | Description |  
+|---|---|
+| 🍜[Danny's Diner](https://github.com/Antonio417/Data_Analyst_Portfolio/tree/main/SQL/Danny's-Diner) | Use data to answer a few simple question about customers, especially about their visiting patterns, how much money they’ve spent and also which menu items are their favourite. Having this deeper connection with customers will help the owner to deliver a better and more personalised experience for their loyal customers. These insights will be used to help decide whether the expansion of existing customer loyalty program is needed.|
+|🍕[Danny's Diner](https://github.com/Antonio417/Data_Analyst_Portfolio/tree/main/SQL/Danny's-Diner) | Danny is expanding his new Pizza Empire and at the same time, he wants to utilize Uber for this plan. Danny started by recruiting “runners” to deliver fresh pizza from Pizza Runner Headquarters (otherwise known as Danny’s house) and also maxed out his credit card to pay freelance developers to build a mobile app to accept orders from customers. Danny requires further assistance to clean his data and apply some basic calculations so he can better direct his runners and optimise Pizza Runner’s operations.| 
+
 
 # Excel
 | Project Name | Area | Description | Tools and Functions |   
