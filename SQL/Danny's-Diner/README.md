@@ -13,9 +13,9 @@ Use data to answer a few simple question about customers, especially about their
 
 ## Available Data
 Danny has shared 3 key datasets for this case study:
-- `sales`;
-- `menu`;
-- `members`;
+- `sales`
+- `menu`
+- `members`
 
 ### Table 1: `sales`
 
