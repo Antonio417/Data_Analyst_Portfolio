@@ -59,7 +59,7 @@ The final members table captures the `join_date` when a `customer_id` joined the
 | B           | 2021-01-09 |
 
 ## Entity Relationship Diagram
-<img src = "https://github.com/Antonio417/Data_Analyst_Portfolio/blob/main/SQL/Danny's-Diner/ERD.png" width="800" height="400" />
+<img src = "https://github.com/Antonio417/Data_Analyst_Portfolio/blob/main/SQL/Danny's-Diner/ERD1.png" width="800" height="400" />
 
 
 ## Case Study Questions 
