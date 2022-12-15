@@ -118,7 +118,7 @@ This table contains all of the `topping_name` values with their corresponding `t
 ## Case Study Questions
 ### A. Pizza Metrics
 
-View my solution [here]().
+View my solution [here](https://github.com/Antonio417/Data_Analyst_Portfolio/blob/main/SQL/Pizza-Runner/Pizza%20Metrics.md).
 
 1. How many pizzas were ordered?
 2. How many unique customer orders were made?
@@ -133,7 +133,7 @@ View my solution [here]().
 
 ### B. Runner and Customer Experience
 
-View my solution [here]()
+View my solution [here](https://github.com/Antonio417/Data_Analyst_Portfolio/blob/main/SQL/Pizza-Runner/Runner%20and%20Customer%20Experience.md)
 
 1. How many runners signed up for each 1 week period? (i.e. week starts 2021-01-01)
 2. What was the average time in minutes it took for each runner to arrive at the Pizza Runner HQ to pickup the order?
@@ -145,7 +145,7 @@ View my solution [here]()
 
 ### C. Ingredient Optimisation
 
-View my solution [here]()
+View my solution [here](https://github.com/Antonio417/Data_Analyst_Portfolio/blob/main/SQL/Pizza-Runner/Ingredient%20Optimisation.md)
 
 1. What are the standard ingredients for each pizza?
 2. What was the most commonly added extra?
@@ -161,7 +161,7 @@ View my solution [here]()
 
 ### D. Pricing and Ratings
 
-View my solution [here]()
+View my solution [here](https://github.com/Antonio417/Data_Analyst_Portfolio/blob/main/SQL/Pizza-Runner/Pricing%20and%20Ratings.md)
 
 1. If a Meat Lovers pizza costs $12 and Vegetarian costs $10 and there were no charges for changes - how much money has Pizza Runner made so far if there are no delivery fees?
 2. What if there was an additional $1 charge for any pizza extras?
