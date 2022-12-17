@@ -34,3 +34,4 @@ GROUP BY
 | 105         | 1                      |
 
 #### 3. How many successful orders were delivered by each runner?
+Orders can be cancelled. Cancelled orders can be found as shown below
