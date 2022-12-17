@@ -32,3 +32,5 @@ GROUP BY
 | 103         | 2                      |
 | 104         | 2                      |
 | 105         | 1                      |
+
+#### 3. How many successful orders were delivered by each runner?
