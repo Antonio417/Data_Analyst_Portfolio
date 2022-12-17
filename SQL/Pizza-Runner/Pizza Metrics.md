@@ -35,9 +35,11 @@ GROUP BY
 
 #### 3. How many successful orders were delivered by each runner?
 Orders can be cancelled. Cancelled orders can be found as shown below
+````sql
 SELECT
   *
 FROM
   pizza_runner.runner_orders
 WHERE
   length(cancellation) > 0
+  ````
