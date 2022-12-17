@@ -12,3 +12,23 @@ FROM pizza_runner.customer_orders;
 | 14                      |
 
 - Total of 14 pizzas were ordered.
+
+#### 2. How many unique customer orders were made?
+
+````sql
+SELECT
+  customer_id,
+  COUNT(DISTINCT order_id) AS unique_customer_orders
+FROM
+  pizza_runner.customer_orders
+GROUP BY
+  customer_id
+  ````
+  
+| customer_id | unique_customer_orders |
+| ----------- | ---------------------- |
+| 101         | 3                      |
+| 102         | 2                      |
+| 103         | 2                      |
+| 104         | 2                      |
+| 105         | 1                      |
