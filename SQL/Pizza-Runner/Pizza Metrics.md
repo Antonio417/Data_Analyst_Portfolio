@@ -52,3 +52,25 @@ WHERE
 | 8        | 2         | 2020-01-10 00:15:02 | 23.4 km  | 15 minute | null                    |
 | 9        | 2         | null                | null     | null      | Customer Cancellation   |
 | 10       | 1         | 2020-01-11 18:50:20 | 10km     | 10minutes | null                    |
+
+#### 4. How many of each type of pizza was delivered?
+
+Join the `pizza_names` table to get pizza names, and join the `runner_orders` table to exclude cancelled orders.
+
+````sql
+SELECT pizza_name, COUNT(pizza_name)
+FROM pizza_runner.customer_orders AS c
+JOIN pizza_runner.pizza_names AS n ON c.pizza_id = n.pizza_id
+JOIN pizza_runner.runner_orders AS r ON c.order_id = r.order_id
+WHERE
+  pickup_time != 'null'
+  AND distance != 'null'
+  AND duration != 'null'
+GROUP BY pizza_name
+  ````
+
+| pizza_name | number_of_pizzas_delivered |
+| ---------- | -------------------------- |
+| Meatlovers | 9                          |
+| Vegetarian | 3                          |
+
