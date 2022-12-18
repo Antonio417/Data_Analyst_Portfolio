@@ -1,4 +1,4 @@
-### 1. How many pizzas were ordered?
+### 1. How many pizzas were ordered ?
 
 ````sql
 SELECT COUNT(pizza_id) AS number_of_pizza_ordered
@@ -13,7 +13,7 @@ FROM pizza_runner.customer_orders;
 
 - Total of 14 pizzas were ordered.
 
-#### 2. How many unique customer orders were made?
+#### 2. How many unique customer orders were made ?
 
 ````sql
 SELECT
@@ -33,7 +33,7 @@ GROUP BY
 | 104         | 2                      |
 | 105         | 1                      |
 
-#### 3. How many successful orders were delivered by each runner?
+#### 3. How many successful orders were delivered by each runner ?
 Orders can be cancelled. Cancelled orders can be found as shown below
 ````sql
 SELECT
@@ -53,7 +53,7 @@ WHERE
 | 9        | 2         | null                | null     | null      | Customer Cancellation   |
 | 10       | 1         | 2020-01-11 18:50:20 | 10km     | 10minutes | null                    |
 
-#### 4. How many of each type of pizza was delivered?
+#### 4. How many of each type of pizza was delivered ?
 
 Join the `pizza_names` table to get pizza names, and join the `runner_orders` table to exclude cancelled orders.
 
@@ -73,4 +73,8 @@ GROUP BY pizza_name
 | ---------- | -------------------------- |
 | Meatlovers | 9                          |
 | Vegetarian | 3                          |
+
+#### 5. How many Vegetarian and Meatlovers were ordered by each customer ?
+
+
 
