@@ -75,6 +75,28 @@ GROUP BY pizza_name
 | Vegetarian | 3                          |
 
 #### 5. How many Vegetarian and Meatlovers were ordered by each customer ?
-
+Calculate the number of ordered pizzas and exclude cancelled orders. Join two tables: pizza_names and runner_orders to exclude cancelled orders.
+````sql
+SELECT customer_id, pizza_name, COUNT(pizza_name) AS number_of_pizzas_delivered
+FROM pizza_runner.customer_orders AS c
+JOIN pizza_runner.pizza_names AS n ON c.pizza_id = n.pizza_id
+JOIN pizza_runner.runner_orders AS r ON c.order_id = r.order_id
+WHERE
+  pickup_time != 'null'
+  AND distance != 'null'
+  AND duration != 'null'
+GROUP BY customer_id, pizza_name
+ORDER BY customer_id
+  ````
+  
+| customer_id | pizza_name | number_of_pizzas_delivered |
+| ----------- | ---------- | -------------------------- |
+| 101         | Meatlovers | 2                          |
+| 102         | Meatlovers | 2                          |
+| 102         | Vegetarian | 1                          |
+| 103         | Meatlovers | 2                          |
+| 103         | Vegetarian | 1                          |
+| 104         | Meatlovers | 3                          |
+| 105         | Vegetarian | 1                          |
 
 
