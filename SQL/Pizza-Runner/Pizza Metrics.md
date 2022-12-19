@@ -124,7 +124,53 @@ GROUP BY
 
 ### 7. For each customer, how many delivered pizzas had at least 1 change and how many had no changes ? 
 ````sql
-SELECT *
-FROM pizza_runner.customer_orders
-WHERE length(extras)>0 OR length(exclusions) > 0
+SELECT
+  customer_id,
+  changes,
+  COUNT(changes) AS number_of_changes
+FROM
+  (
+    WITH ranked AS (
+      SELECT
+        *,
+        ROW_NUMBER() OVER () AS rank
+      FROM
+        pizza_runner.customer_orders
+    )
+    SELECT
+      customer_id,
+      c.order_id,
+      CASE
+        WHEN exclusions ~ '^[0-9, ]+$'
+        OR extras ~ '^[0-9, ]+$' THEN 'Have changes'
+        ELSE 'No changes'
+      END AS changes,
+      rank
+    FROM
+      ranked AS c
+      JOIN pizza_runner.runner_orders AS r ON c.order_id = r.order_id
+    WHERE
+      pickup_time != 'null'
+      AND distance != 'null'
+      AND duration != 'null'
+    GROUP BY
+      exclusions,
+      extras,
+      customer_id,
+      c.order_id,
+      rank
+  ) AS changes
+GROUP BY
+  changes,
+  customer_id
+ORDER BY
+  customer_id
   ````
+| customer_id | changes      | number_of_pizzas |
+| ----------- | ------------ | ---------------- |
+| 101         | No changes   | 2                |
+| 102         | No changes   | 3                |
+| 103         | Have changes | 3                |
+| 104         | Have changes | 2                |
+| 104         | No changes   | 1                |
+| 105         | Have changes | 1                |
