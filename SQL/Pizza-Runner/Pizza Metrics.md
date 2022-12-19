@@ -123,3 +123,8 @@ GROUP BY
 | 3                  |
 
 ### 7. For each customer, how many delivered pizzas had at least 1 change and how many had no changes ? 
+````sql
+SELECT *
+FROM pizza_runner.customer_orders
+WHERE length(extras)>0 OR length(exclusions) > 0
+  ````
