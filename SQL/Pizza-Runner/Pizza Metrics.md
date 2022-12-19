@@ -100,3 +100,24 @@ ORDER BY customer_id
 | 105         | Vegetarian | 1                          |
 
 ### 6. What was the maximum number of pizzas delivered in a single order ?
+
+````sql
+SELECT MAX(items) AS max_number_of_orders
+FROM
+	(
+SELECT c.order_id, COUNT(c.order_id) AS items
+FROM pizza_runner.customer_orders c
+JOIN pizza_runner.runner_orders r
+ON c.order_id = r.order_id
+WHERE
+  pickup_time != 'null'
+  AND distance != 'null'
+  AND duration != 'null'
+GROUP BY
+  c.order_id
+    ) AS temp_table
+  ````
+
+| max_items_in_order |
+| ------------------ |
+| 3                  |
