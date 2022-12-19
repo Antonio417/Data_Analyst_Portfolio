@@ -103,8 +103,8 @@ ORDER BY customer_id
 
 ````sql
 SELECT MAX(items) AS max_number_of_orders
-FROM
-	(
+FROM 
+(
 SELECT c.order_id, COUNT(c.order_id) AS items
 FROM pizza_runner.customer_orders c
 JOIN pizza_runner.runner_orders r
