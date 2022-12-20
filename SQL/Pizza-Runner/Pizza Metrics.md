@@ -223,3 +223,34 @@ ORDER BY hours
   ````
 
 ### 10. What was the volume of orders for each day of the week ?
+Excluding cancelled orders:
+````sql
+SELECT
+  day_of_the_week,
+  SUM(pizzas_ordered) AS pizzas_ordered
+FROM
+	(
+	SELECT
+		CASE WHEN EXTRACT(isodow FROM order_time) = 1 THEN 'Monday'
+		WHEN EXTRACT(isodow FROM order_time) = 2 THEN 'Tuesday'
+		WHEN EXTRACT(isodow FROM order_time) = 3 THEN 'Wednesday'
+		WHEN EXTRACT(isodow FROM order_time) = 4 THEN 'Thursday'
+		WHEN EXTRACT(isodow FROM order_time) = 5 THEN 'Friday'
+		WHEN EXTRACT(isodow FROM order_time) = 6 THEN 'Saturday'
+		WHEN EXTRACT(isodow FROM order_time) = 7 THEN 'Sunday'
+		END AS day_of_the_week,
+		COUNT(EXTRACT(isodow FROM order_time)) AS pizzas_ordered
+    	FROM
+		pizza_runner.customer_orders AS c
+		JOIN pizza_runner.runner_orders AS r ON c.order_id = r.order_id
+    	WHERE
+      		pickup_time != 'null'
+      		AND distance != 'null'
+      		AND duration != 'null'
+    	GROUP BY order_time
+	) AS count_dow
+GROUP BY
+  day_of_the_week
+ORDER BY
+  pizzas_ordered DESC
+````
