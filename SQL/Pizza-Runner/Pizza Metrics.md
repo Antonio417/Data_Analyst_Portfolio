@@ -176,3 +176,24 @@ ORDER BY
 | 105         | Have changes | 1                |
 
 ### 8. How many pizzas were delivered that had both exclusions and extras ?
+````sql
+SELECT
+  CASE
+    WHEN exclusions ~ '^[0-9, ]+$'
+    AND extras ~ '^[0-9, ]+$' THEN 'Have exclusions and extras'
+  END AS exclusions_and_extras,
+  COUNT(exclusions) AS number_of_pizzas
+FROM
+  pizza_runner.customer_orders AS c
+  JOIN pizza_runner.runner_orders AS r ON c.order_id = r.order_id
+WHERE
+  pickup_time != 'null'
+  AND distance != 'null'
+  AND duration != 'null'
+GROUP BY
+  exclusions,
+  extras
+HAVING
+  extras ~ '^[0-9, ]+$'
+  AND exclusions ~ '^[0-9, ]+$'
+  ````
