@@ -221,6 +221,14 @@ FROM
 GROUP BY hours
 ORDER BY hours    
   ````
+  
+| hours | pizzas_ordered |
+| ----- | -------------- |
+| 13    | 3              |
+| 18    | 3              |
+| 19    | 1              |
+| 21    | 2              |
+| 23    | 3              |
 
 ### 10. What was the volume of orders for each day of the week ?
 Excluding cancelled orders:
