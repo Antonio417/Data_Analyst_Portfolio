@@ -262,3 +262,8 @@ GROUP BY
 ORDER BY
   pizzas_ordered DESC
 ````
+| day_of_the_week | pizzas_ordered |
+| ----------- | -------------- |
+| Saturday    | 5              |
+| Wednesday  | 4              |
+| Thursday    | 3              |
