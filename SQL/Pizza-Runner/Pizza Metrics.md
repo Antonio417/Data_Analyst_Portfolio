@@ -200,3 +200,5 @@ HAVING
 | exclusions_and_extras      | number_of_pizzas |
 | -------------------------- | ---------------- |
 | Have exclusions and extras | 1                |
+
+### 9. What was the total volume of pizzas ordered for each hour of the day?
