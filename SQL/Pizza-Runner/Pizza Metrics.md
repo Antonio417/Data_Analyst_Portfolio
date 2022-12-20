@@ -174,3 +174,5 @@ ORDER BY
 | 104         | Have changes | 2                |
 | 104         | No changes   | 1                |
 | 105         | Have changes | 1                |
+
+### 8. How many pizzas were delivered that had both exclusions and extras ?
