@@ -197,3 +197,6 @@ HAVING
   extras ~ '^[0-9, ]+$'
   AND exclusions ~ '^[0-9, ]+$'
   ````
+| exclusions_and_extras      | number_of_pizzas |
+| -------------------------- | ---------------- |
+| Have exclusions and extras | 1                |
