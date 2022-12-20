@@ -34,7 +34,7 @@ GROUP BY
 | 105         | 1                      |
 
 ### 3. How many successful orders were delivered by each runner ?
-Orders can be cancelled. Cancelled orders can be found as shown below
+Orders can be cancelled and can be found as shown below
 ````sql
 SELECT
   *
@@ -202,3 +202,22 @@ HAVING
 | Have exclusions and extras | 1                |
 
 ### 9. What was the total volume of pizzas ordered for each hour of the day?
+Excluding cancelled orders:
+
+````sql
+SELECT hours, SUM(pizzas_ordered) AS pizzas_ordered
+FROM
+	(
+      SELECT EXTRACT(hour FROM order_time) AS hours,
+      COUNT(EXTRACT(hour FROM order_time)) AS pizzas_ordered
+      FROM pizza_runner.customer_orders AS c
+      JOIN pizza_runner.runner_orders AS r 
+      ON c.order_id = r.order_id
+      WHERE pickup_time != 'null'
+            AND distance != 'null'
+            AND duration != 'null'
+      GROUP BY order_time
+	) AS count_hours
+GROUP BY hours
+ORDER BY hours    
+  ````
