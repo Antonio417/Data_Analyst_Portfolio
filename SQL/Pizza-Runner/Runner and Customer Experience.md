@@ -1,4 +1,4 @@
-### 1. How many runners signed up for each 1 week period? (i.e. week starts 2021-01-01)
+### 1. How many runners signed up for each 1 week period ? (i.e. week starts 2021-01-01)
 
 There is some discrepancy between the data in the `runners table`, `customer_orders` and `runner_orders` tables.
 
@@ -32,7 +32,7 @@ FROM
 | Week 2         | 1                       |
 | Week 3         | 1                       |
 
-### 2. What was the average time in minutes it took for each runner to arrive at the Pizza Runner HQ to pickup the order?
+### 2. What was the average time in minutes it took for each runner to arrive at the Pizza Runner HQ to pickup the order ?
 
 The `pickup_time` column in the `runner_orders` table has `varchar` type, and we need transfrom it to timestamp first. After that we can count the difference between order creation time and order pickup time and the average time in minutes for each runner to arrive at the Pizza Runner HQ to pickup the order.
 
