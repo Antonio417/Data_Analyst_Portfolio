@@ -32,3 +32,37 @@ FROM
 | Week 2         | 1                       |
 | Week 3         | 1                       |
 
+### 2. What was the average time in minutes it took for each runner to arrive at the Pizza Runner HQ to pickup the order?
+
+The `pickup_time` column in the `runner_orders` table has `varchar` type, and we need transfrom it to timestamp first. After that we can count the difference between order creation time and order pickup time and the average time in minutes for each runner to arrive at the Pizza Runner HQ to pickup the order.
+
+````sql
+SELECT
+  runner_id,
+  ROUND(
+    AVG (
+      DATE_PART(
+        'minute',
+        TO_TIMESTAMP(pickup_time, 'YYYY-MM-DD HH24:MI:SS') - c.order_time
+      )
+    )
+  ) AS average_pickup_time_in_minutes
+FROM
+  pizza_runner.runner_orders AS r,
+  pizza_runner.customer_orders AS c
+WHERE
+  c.order_id = r.order_id
+  AND pickup_time != 'null'
+  AND distance != 'null'
+  AND duration != 'null'
+GROUP BY
+  runner_id
+ORDER BY
+  runner_id
+  ````
+  
+| runner_id | average_pickup_time_in_minutes |
+| --------- | ------------------------------ |
+| 1         | 15                             |
+| 2         | 23                             |
+| 3         | 10                             |
