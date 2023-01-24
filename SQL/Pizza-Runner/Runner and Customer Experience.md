@@ -66,3 +66,58 @@ ORDER BY
 | 1         | 15                             |
 | 2         | 23                             |
 | 3         | 10                             |
+
+#### 3. Is there any relationship between the number of pizzas and how long the order takes to prepare?
+
+To answer this question, let's count for each order: number of ordered pizzas, time from placing order to pick up, and average time it took to prepare one pizza.
+
+````sql
+SELECT
+  c.order_id,
+  COUNT(c.order_id) AS items_in_order,
+  ROUND(
+    AVG (
+      DATE_PART(
+        'minute',
+        pickup_time_new - c.order_time
+      )
+    )
+  ) AS average_pickup_time_in_minutes,
+  ROUND(
+    AVG (
+      DATE_PART(
+        'minute',
+        pickup_time_new - c.order_time
+      )
+    ) / COUNT(c.order_id)
+  ) AS average_time_per_pizza_in_minutes
+FROM
+  pizza_runner.runner_orders AS r,
+  pizza_runner.customer_orders AS c,
+  LATERAL(
+    SELECT
+      TO_TIMESTAMP(pickup_time, 'YYYY-MM-DD HH24:MI:SS') AS pickup_time_new
+  ) pt
+WHERE
+  c.order_id = r.order_id
+  AND pickup_time != 'null'
+  AND distance != 'null'
+  AND duration != 'null'
+GROUP BY
+  c.order_id
+ORDER BY
+  items_in_order DESC
+  ````
+  
+| order_id | items_in_order | average_pickup_time_in_minutes | average_time_per_pizza_in_minutes |
+| -------- | -------------- | ------------------------------ | --------------------------------- |
+| 4        | 3              | 29                             | 10                                |
+| 3        | 2              | 21                             | 10                                |
+| 10       | 2              | 15                             | 8                                 |
+| 7        | 1              | 10                             | 10                                |
+| 8        | 1              | 20                             | 20                                |
+| 5        | 1              | 10                             | 10                                |
+| 2        | 1              | 10                             | 10                                |
+| 1        | 1              | 10                             | 10                                |  
+  
+It takes 10 minutes in average to prepare one pizza (except order #8 - it took 20 minutes to prepare 1 pizza). The more pizzas in one order, the more time it takes to prepare the order.
