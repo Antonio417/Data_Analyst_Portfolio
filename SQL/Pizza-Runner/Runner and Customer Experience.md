@@ -121,3 +121,34 @@ ORDER BY
 | 1        | 1              | 10                             | 10                                |  
   
 It takes 10 minutes in average to prepare one pizza (except order #8 - it took 20 minutes to prepare 1 pizza). The more pizzas in one order, the more time it takes to prepare the order.
+
+#### 4. What was the average distance travelled for each customer?
+
+Assuming that each customer has the same address, we can suggest that there is a possible misspelling error in the distance cell for the customer with ID 102 (order #2 - 13.4km, order #8 - 23.4km). 
+Data in the `distance` column has `varchar` type. To calculate the average distance we need to cast is as `numeric`. We can do it using `TO_NUMBER` function.
+
+````sql
+SELECT
+  customer_id,
+  ROUND(AVG(TO_NUMBER(distance, '99D9')), 1) AS average_distance_km
+FROM
+  pizza_runner.runner_orders AS r,
+  pizza_runner.customer_orders AS c
+WHERE
+  c.order_id = r.order_id
+  AND pickup_time != 'null'
+  AND distance != 'null'
+  AND duration != 'null'
+GROUP BY
+  customer_id
+ORDER BY
+  customer_id
+  ````
+  
+| customer_id | average_distance_km |
+| ----------- | ------------------- |
+| 101         | 20.0                |
+| 102         | 16.7                |
+| 103         | 23.4                |
+| 104         | 10.0                |
+| 105         | 25.0                |
