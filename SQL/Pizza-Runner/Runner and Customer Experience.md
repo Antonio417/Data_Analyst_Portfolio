@@ -67,7 +67,7 @@ ORDER BY
 | 2         | 23                             |
 | 3         | 10                             |
 
-#### 3. Is there any relationship between the number of pizzas and how long the order takes to prepare?
+### 3. Is there any relationship between the number of pizzas and how long the order takes to prepare?
 
 To answer this question, let's count for each order: number of ordered pizzas, time from placing order to pick up, and average time it took to prepare one pizza.
 
@@ -122,7 +122,7 @@ ORDER BY
   
 It takes 10 minutes in average to prepare one pizza (except order #8 - it took 20 minutes to prepare 1 pizza). The more pizzas in one order, the more time it takes to prepare the order.
 
-#### 4. What was the average distance travelled for each customer?
+### 4. What was the average distance travelled for each customer?
 
 Assuming that each customer has the same address, we can suggest that there is a possible misspelling error in the distance cell for the customer with ID 102 (order #2 - 13.4km, order #8 - 23.4km). 
 Data in the `distance` column has `varchar` type. To calculate the average distance we need to cast is as `numeric`. We can do it using `TO_NUMBER` function.
@@ -153,7 +153,7 @@ ORDER BY
 | 104         | 10.0                |
 | 105         | 25.0                |
 
-#### 5. What was the difference between the longest and shortest delivery times for all orders?
+### 5. What was the difference between the longest and shortest delivery times for all orders?
 
 Checking the longest and the shortest delivery time first:
 
@@ -193,3 +193,41 @@ WHERE
 | 30                                  |  
 
 ***The difference between the longest and the shortest delivery time is 30 minutes***
+
+### 6. What was the average speed for each runner for each delivery and do you notice any trend for these values?
+
+To calculate the average speed in km/h we need to divide distance to duration, and as the duration is in minutes, we need to divide the result to 60 to convert minutes to hours.
+`distance` and `duration` columns have `varchar` data type, it needs to be converted to `numeric` to make calculations.
+
+````sql
+SELECT
+  order_id,
+  runner_id,
+  ROUND(
+    AVG(
+      TO_NUMBER(distance, '99D9') /(TO_NUMBER(duration, '99') / 60)
+    )
+  ) AS runner_average_speed
+FROM
+  pizza_runner.runner_orders AS r
+WHERE
+  pickup_time != 'null'
+  AND distance != 'null'
+  AND duration != 'null'
+GROUP BY
+  order_id,
+  runner_id
+ORDER BY
+  order_id
+````
+
+| order_id | runner_id | runner_average_speed |
+| -------- | --------- | -------------------- |
+| 1        | 1         | 38                   |
+| 2        | 1         | 44                   |
+| 3        | 1         | 40                   |
+| 4        | 2         | 35                   |
+| 5        | 3         | 40                   |
+| 7        | 2         | 60                   |
+| 8        | 2         | 94                   |
+| 10       | 1         | 60                   |  
