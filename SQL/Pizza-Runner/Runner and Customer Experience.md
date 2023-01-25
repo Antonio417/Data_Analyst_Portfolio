@@ -152,3 +152,44 @@ ORDER BY
 | 103         | 23.4                |
 | 104         | 10.0                |
 | 105         | 25.0                |
+
+#### 5. What was the difference between the longest and shortest delivery times for all orders?
+
+Checking the longest and the shortest delivery time first:
+
+````sql
+SELECT
+  MIN(TO_NUMBER(duration, '99')) AS min_delivery_time_in_minutes,
+  MAX(TO_NUMBER(duration, '99')) AS max_delivery_time_in_minutes
+FROM
+  pizza_runner.runner_orders AS r
+WHERE
+  pickup_time != 'null'
+  AND distance != 'null'
+  AND duration != 'null'
+````
+
+| min_delivery_time_in_minutes | max_delivery_time_in_minutes |
+| ---------------------------- | ---------------------------- |
+| 10                           | 40                           |
+
+The shortest delivery time was 10 minutes, the longest delivery time was 40 minutes.
+
+Now let's calculate the time difference:
+
+````sql
+SELECT
+  MAX(TO_NUMBER(duration, '99')) - MIN(TO_NUMBER(duration, '99')) AS delivery_time_difference_in_minutes
+FROM
+  pizza_runner.runner_orders AS r
+WHERE
+  pickup_time != 'null'
+  AND distance != 'null'
+  AND duration != 'null'
+  ````
+  
+| delivery_time_difference_in_minutes |
+| ----------------------------------- |
+| 30                                  |  
+
+***The difference between the longest and the shortest delivery time is 30 minutes***
