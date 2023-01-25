@@ -234,10 +234,6 @@ ORDER BY
 
 ### 7. What is the successful delivery percentage for each runner?
 
-First we need to count number of successful deliveries and unsuccessful deliveries.
-
-Then we can calculate the percentage of successful deliveries: 100% deduct the percent of unsuccessful deliveries. To calculate the percent of unsuccessful deliveries we need to divide the number of unsuccessful deliveries to the total number of deliveries and multiply to 100. If all the deliveries were successful then the rating is 100% (100 - 0\*100), and if all of them were unsuccesful then the rating is 0% (100 - 1\*100):
-
 ````sql
 SELECT
   runner_id,
