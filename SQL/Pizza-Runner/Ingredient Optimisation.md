@@ -201,3 +201,124 @@ ORDER BY
 | 9        | Meatlovers - Exclude Cheese - Extra Bacon, Chicken              |
 | 10       | Meatlovers                                                      |
 | 10       | Meatlovers - Exclude BBQ Sauce, Mushrooms - Extra Bacon, Cheese |
+
+### 5. Generate an alphabetically ordered comma separated ingredient list for each pizza order from the `customer_orders` table and add a 2x in front of any relevant ingredients
+
+For example: "Meat Lovers: 2xBacon, Beef, ... , Salami"
+
+This query utilizes similar functions as the previous query. 
+
+The query logic is: first we select all ingredients for each pizza type, exclude exclusions, add extras and count how many ingredients each pizza includes, then we select the ingredients that are greater than 0 and calculate the sum of them to add 2x when relevant, and then aggregate the results into one string.
+To sort all the ingredients alphabetically we add the `ORDER BY` parameter to the `string_agg` function.
+
+````sql
+SELECT
+  order_id,
+  CONCAT(
+    pizza_name,
+    ': ',
+    STRING_AGG(
+      topping_name,
+      ', '
+      ORDER BY
+        topping_name
+    )
+  ) AS all_ingredients
+FROM
+  (
+    SELECT
+      rank,
+      order_id,
+      pizza_name,
+      CONCAT(
+        CASE
+          WHEN (SUM(count_toppings) + SUM(count_extra)) > 1 THEN (SUM(count_toppings) + SUM(count_extra)) || 'x'
+        END,
+        topping_name
+      ) AS topping_name
+    FROM
+      (
+        WITH rank_added AS (
+          SELECT
+            *,
+            ROW_NUMBER() OVER () AS rank
+          FROM
+            pizza_runner.customer_orders
+        )
+        SELECT
+          rank,
+          ra.order_id,
+          pizza_name,
+          topping_name,
+          CASE
+            WHEN exclusions != 'null'
+            AND t.topping_id IN (
+              SELECT
+                unnest(string_to_array(exclusions, ',') :: int [])
+            ) THEN 0
+            ELSE CASE
+              WHEN t.topping_id IN (
+                SELECT
+                  UNNEST(STRING_TO_ARRAY(r.toppings, ',') :: int [])
+              ) THEN COUNT(topping_name)
+              ELSE 0
+            END
+          END AS count_toppings,
+          CASE
+            WHEN extras != 'null'
+            AND t.topping_id IN (
+              SELECT
+                unnest(string_to_array(extras, ',') :: int [])
+            ) THEN count(topping_name)
+            ELSE 0
+          END AS count_extra
+        FROM
+          rank_added AS ra,
+          pizza_runner.pizza_toppings AS t,
+          pizza_runner.pizza_recipes AS r
+          JOIN pizza_runner.pizza_names AS n ON r.pizza_id = n.pizza_id
+        WHERE
+          ra.pizza_id = n.pizza_id
+        GROUP BY
+          pizza_name,
+          rank,
+          ra.order_id,
+          topping_name,
+          toppings,
+          exclusions,
+          extras,
+          t.topping_id
+      ) tt
+    WHERE
+      count_toppings > 0
+      OR count_extra > 0
+    GROUP BY
+      pizza_name,
+      rank,
+      order_id,
+      topping_name
+  ) cc
+GROUP BY
+  pizza_name,
+  rank,
+  order_id
+ORDER BY
+  rank
+````
+
+| order_id | all_ingredients                                                                     |
+| -------- | ----------------------------------------------------------------------------------- |
+| 1        | Meatlovers: BBQ Sauce, Bacon, Beef, Cheese, Chicken, Mushrooms, Pepperoni, Salami   |
+| 2        | Meatlovers: BBQ Sauce, Bacon, Beef, Cheese, Chicken, Mushrooms, Pepperoni, Salami   |
+| 3        | Meatlovers: BBQ Sauce, Bacon, Beef, Cheese, Chicken, Mushrooms, Pepperoni, Salami   |
+| 3        | Vegetarian: Cheese, Mushrooms, Onions, Peppers, Tomato Sauce, Tomatoes              |
+| 4        | Meatlovers: BBQ Sauce, Bacon, Beef, Chicken, Mushrooms, Pepperoni, Salami           |
+| 4        | Meatlovers: BBQ Sauce, Bacon, Beef, Chicken, Mushrooms, Pepperoni, Salami           |
+| 4        | Vegetarian: Mushrooms, Onions, Peppers, Tomato Sauce, Tomatoes                      |
+| 5        | Meatlovers: 2xBacon, BBQ Sauce, Beef, Cheese, Chicken, Mushrooms, Pepperoni, Salami |
+| 6        | Vegetarian: Cheese, Mushrooms, Onions, Peppers, Tomato Sauce, Tomatoes              |
+| 7        | Vegetarian: Bacon, Cheese, Mushrooms, Onions, Peppers, Tomato Sauce, Tomatoes       |
+| 8        | Meatlovers: BBQ Sauce, Bacon, Beef, Cheese, Chicken, Mushrooms, Pepperoni, Salami   |
+| 9        | Meatlovers: 2xBacon, 2xChicken, BBQ Sauce, Beef, Mushrooms, Pepperoni, Salami       |
+| 10       | Meatlovers: BBQ Sauce, Bacon, Beef, Cheese, Chicken, Mushrooms, Pepperoni, Salami   |
+| 10       | Meatlovers: 2xBacon, 2xCheese, Beef, Chicken, Pepperoni, Salami                     |
