@@ -61,3 +61,41 @@ WHERE
 | extra_ingredient | number_of_pizzas |
 | ---------------- | ---------------- |
 | Bacon            | 4                |
+
+### 3. What was the most common exclusion?
+
+````sql
+SELECT
+  excluded_ingredient,
+  number_of_pizzas
+FROM
+  (
+    WITH exclusions_table AS (
+      SELECT
+        order_id,
+        UNNEST(STRING_TO_ARRAY(exclusions, ',') :: int []) AS topping_id
+      FROM
+        pizza_runner.customer_orders AS c
+      WHERE
+        exclusions != 'null'
+    )
+    SELECT
+      topping_name AS excluded_ingredient,
+      COUNT(topping_name) AS number_of_pizzas,
+      RANK() OVER (
+        ORDER BY
+          COUNT(topping_name) DESC
+      ) AS rank
+    FROM
+      exclusions_table AS et
+      JOIN pizza_runner.pizza_toppings AS t ON et.topping_id = t.topping_id
+    GROUP BY
+      topping_name
+  ) t
+WHERE
+  rank = 1
+````
+
+| excluded_ingredient | number_of_pizzas |
+| ------------------- | ---------------- |
+| Cheese              | 4                |
